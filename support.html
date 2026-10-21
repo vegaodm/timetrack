@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Support — Spendly Time Track</title>
+  <meta name="description" content="Help for Spendly Time Track: starting timers, categories and activities, statistics, and database backup and restore.">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="inner">
+      <a class="brand" href="index.html">
+        <svg viewBox="0 0 64 64" role="img" aria-label="Spendly Time Track">
+          <circle cx="32" cy="32" r="26" fill="none" stroke="#5B6CFF" stroke-width="9" stroke-linecap="round"
+                  stroke-dasharray="49 164" transform="rotate(-90 32 32)"/>
+          <circle cx="32" cy="32" r="26" fill="none" stroke="#30D158" stroke-width="9" stroke-linecap="round"
+                  stroke-dasharray="39 174" transform="rotate(18 32 32)"/>
+          <circle cx="32" cy="32" r="26" fill="none" stroke="#FF9F0A" stroke-width="9" stroke-linecap="round"
+                  stroke-dasharray="29 184" transform="rotate(104 32 32)"/>
+          <circle cx="32" cy="32" r="26" fill="none" stroke="#FF375F" stroke-width="9" stroke-linecap="round"
+                  stroke-dasharray="22 191" transform="rotate(166 32 32)"/>
+          <circle cx="32" cy="32" r="26" fill="none" stroke="#BF5AF2" stroke-width="9" stroke-linecap="round"
+                  stroke-dasharray="22 191" transform="rotate(210 32 32)"/>
+          <circle cx="32" cy="32" r="2.6" fill="#fff"/>
+          <path d="M32 32V19" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+          <path d="M32 32l8 6" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+        </svg>
+        Spendly Time Track
+      </a>
+      <nav class="site-nav" aria-label="Site">
+        <a href="index.html">Privacy</a>
+        <a href="support.html" aria-current="page">Support</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="hero">
+      <p class="eyebrow">Support</p>
+      <h1>Track the day, one tap at a time.</h1>
+      <p class="lede">
+        Spendly Time Track turns your 24 hours into a pie chart. Tap an activity to start
+        tracking, tap it again to stop — and run as many timers at once as you need.
+      </p>
+      <p class="meta">Version 1.0 · Requires iOS 27 or later · iPhone and iPad</p>
+    </div>
+
+    <div class="card">
+      <h2>Quick start</h2>
+      <ol>
+        <li>Open <strong>Records</strong>. Each tile is an activity, such as Sleep, Reading or Commute.</li>
+        <li>Tap a tile to start its timer. The tile lifts into Liquid Glass and shows <strong>LIVE</strong>.</li>
+        <li>Tap the same tile again to stop. The session is saved to the database immediately.</li>
+        <li>Tap <strong>Stats</strong> to see where the hours went — Day, Week, Month or Year.</li>
+      </ol>
+      <p class="note">
+        Timers keep running while the app is in the background or closed, because each record stores
+        an absolute start time. Reopen the app and the elapsed time is still correct.
+      </p>
+    </div>
+
+    <h2>Timers</h2>
+    <h3>Run several activities at once</h3>
+    <p>
+      Start any number of timers — for example “Commute” and “Podcast” together. While timers are
+      running, a <strong>Now tracking</strong> strip appears above your categories; tap a capsule
+      there to stop that activity. To stop everything, open <strong>Settings</strong> and use
+      <strong>Stop All Timers</strong>.
+    </p>
+    <h3>Tiles and list layout</h3>
+    <p>
+      Switch between the grid and list layouts with the toolbar button in Records, or in
+      <strong>Settings → Display → Layout</strong>. Your choice is remembered.
+    </p>
+    <h3>What the cards show</h3>
+    <ul>
+      <li><strong>Today ring</strong> — the share of the 24-hour day used by each category, plus the untracked remainder.</li>
+      <li><strong>Tile time</strong> — how much time you have tracked for that activity today.</li>
+      <li><strong>Category totals</strong> — the sum of its activities for today.</li>
+    </ul>
+
+    <h2>Categories and activities</h2>
+    <p>
+      A category groups related activities. For example <em>Study</em> can contain
+      <em>Deep Work</em>, <em>Reading</em> and <em>Courses</em>. The default library is fully editable.
+    </p>
+    <ol>
+      <li>Open <strong>Settings → Categories &amp; Activities</strong>.</li>
+      <li>Tap <strong>+</strong> to create a category: name it, pick a color and an icon.</li>
+      <li>Open the category and tap <strong>+</strong> to add activities to it.</li>
+      <li>Swipe a row to edit or delete; use <strong>Edit</strong> to reorder categories and activities.</li>
+      <li>Archive an activity you no longer use. It disappears from Records, but its history is kept.</li>
+    </ol>
+    <p class="note">
+      Deleting an activity or category also deletes its recorded time. Archive instead if you may
+      want the history later — and export a backup before any major cleanup.
+    </p>
+
+    <h2>Statistics</h2>
+    <table>
+      <thead>
+        <tr><th>Range</th><th>What it shows</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Day</td><td>The full 24 hours: tracked categories plus the untracked remainder.</td></tr>
+        <tr><td>Week</td><td>Seven days, with daily bars and a category breakdown.</td></tr>
+        <tr><td>Month</td><td>Every day in the month, plus per-category totals.</td></tr>
+        <tr><td>Year</td><td>Twelve monthly buckets and the year’s distribution.</td></tr>
+      </tbody>
+    </table>
+    <p>
+      Use the arrows to move to a previous or next period, and the refresh button to reload.
+      Tap a category in <strong>Breakdown</strong> to expand its activities.
+    </p>
+    <h3>Why can tracked time exceed 24 hours?</h3>
+    <p>
+      Parallel timers overlap. The Day ring always represents the 24-hour day, so overlapping
+      sessions are normalised in the chart while the totals report the real sum of tracked time.
+      The app shows an explanatory note whenever this happens.
+    </p>
+
+    <h2>Backup and restore</h2>
+    <p>
+      Everything lives in one SQLite database file. Backups are portable copies of that file.
+    </p>
+    <h3>Export</h3>
+    <ol>
+      <li>Open <strong>Settings → Backup</strong>.</li>
+      <li>Tap <strong>Export Database</strong>.</li>
+      <li>Choose where to send the file in the share sheet — Files, iCloud Drive, AirDrop, Mail, and so on.</li>
+    </ol>
+    <h3>Import</h3>
+    <ol>
+      <li>Open <strong>Settings → Backup → Import Database</strong>.</li>
+      <li>Pick a previously exported <code>.sqlite</code> file.</li>
+      <li>Confirm the replacement. The file is checked first, then copied into place.</li>
+    </ol>
+    <p class="note">
+      Import replaces all current categories, activities and records. A safety copy of the previous
+      database is kept in the app’s Backups folder, and its filename is shown after the import.
+    </p>
+
+    <h2>About screen</h2>
+    <p>
+      <strong>Settings → About</strong> shows the number of records, categories and activities,
+      the app version, links to this policy and support page, and the contact address.
+    </p>
+
+    <h2>FAQ</h2>
+    <div class="faq">
+      <details>
+        <summary>Does the app sync between devices?</summary>
+        <p>Not in version 1.0. Data is local to each device. Export the database on one device and import it on another to move your history.</p>
+      </details>
+      <details>
+        <summary>Do I need an internet connection?</summary>
+        <p>No. Tracking, statistics and backups work entirely offline. Only the Privacy and Support links need a browser.</p>
+      </details>
+      <details>
+        <summary>Can I edit the start or end time of a record?</summary>
+        <p>Not yet. Tap the tile to stop a timer and start again if you need a new segment.</p>
+      </details>
+      <details>
+        <summary>I deleted an activity by accident. Can I get its time back?</summary>
+        <p>Only from a backup. If you exported one before deleting, import it in Settings → Backup. This is why the app keeps a safety copy when you import.</p>
+      </details>
+      <details>
+        <summary>Will my data survive an app update?</summary>
+        <p>Yes. Updating keeps the app’s data container. Deleting the app removes it, so export a backup first if you plan to reinstall.</p>
+      </details>
+      <details>
+        <summary>The numbers look different after midnight.</summary>
+        <p>Records and the Day range describe the current calendar day. Sessions that cross midnight are split at midnight for day-level statistics.</p>
+      </details>
+      <details>
+        <summary>Does the layout adapt to iPad and foldables?</summary>
+        <p>Yes. The interface uses size classes and system bars, so it adapts to iPad multitasking, landscape, and iPhone Duo poses, including the side-mounted controls.</p>
+      </details>
+    </div>
+
+    <h2>Contact</h2>
+    <div class="card">
+      <p>
+        Still stuck, found a bug, or have a feature request? Include your device model, iOS version
+        and app version if you can.
+      </p>
+      <p class="contact">
+        <a class="button" href="mailto:vegaodm@outlook.com?subject=Spendly%20Time%20Track%20Support">Email support</a>
+        <span><a href="mailto:vegaodm@outlook.com">vegaodm@outlook.com</a></span>
+      </p>
+      <p class="meta">Most messages are answered within 2 business days.</p>
+    </div>
+  </main>
+
+  <footer>
+    <div class="inner">
+      <span>© 2026 Vega · Spendly Time Track</span>
+      <span><a href="index.html">Privacy</a> · <a href="support.html">Support</a></span>
+    </div>
+  </footer>
+</body>
+</html>
