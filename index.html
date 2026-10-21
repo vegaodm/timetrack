@@ -46,7 +46,7 @@
         no analytics, no advertising, and no third-party SDKs. Your categories, activities
         and time records are stored in a SQLite database inside the app’s private container.
       </p>
-      <p class="meta">Effective October 21, 2026 · Applies to Spendly Time Track for iPhone and iPad</p>
+      <p class="meta">Effective October 22, 2026 · Applies to Spendly Time Track for iPhone and iPad</p>
     </div>
 
     <div class="card">
@@ -64,7 +64,7 @@
       Everything below is written to a local SQLite database in the app’s sandbox on your device:
     </p>
     <ul>
-      <li>The categories you create, including their name, color and icon.</li>
+      <li>The categories you create, including their name, color, icon and the order you arrange them in.</li>
       <li>The activities you create inside those categories.</li>
       <li>Time records: an activity identifier plus a start time and, when you stop the timer, an end time.</li>
       <li>App preferences, such as whether Records uses the grid or list layout.</li>
@@ -90,6 +90,16 @@
       When you import a backup, the file you pick is validated and copied over the live database,
       and a safety copy of the previous database is kept in the same folder. Exported backups are
       not encrypted by the app; store them somewhere you trust.
+    </p>
+
+    <h2>Live Activities</h2>
+    <p>
+      While a timer is running, the app shows a Live Activity on your Lock Screen and in the
+      Dynamic Island: the activity icon, its name and the elapsed time. Expanding the island adds
+      the start time and the time tracked today. All of it — including the elapsed time, which the
+      system ticks forward on its own — is rendered on your device from the local database. None of
+      it is sent to the developer, to any server or to any third party, and the app performs no
+      network requests to keep it up to date. Stopping the last timer ends the activity.
     </p>
 
     <h2>Data retention and deletion</h2>

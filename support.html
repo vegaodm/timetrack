@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Support — Spendly Time Track</title>
-  <meta name="description" content="Help for Spendly Time Track: starting timers, categories and activities, statistics, and database backup and restore.">
+  <meta name="description" content="Help for Spendly Time Track: starting timers, the Live Activity and Dynamic Island, reordering categories and activities, statistics, and database backup and restore.">
   <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
@@ -91,12 +91,38 @@
       <li>Open <strong>Settings → Categories &amp; Activities</strong>.</li>
       <li>Tap <strong>+</strong> to create a category: name it, pick a color and an icon.</li>
       <li>Open the category and tap <strong>+</strong> to add activities to it.</li>
-      <li>Swipe a row to edit or delete; use <strong>Edit</strong> to reorder categories and activities.</li>
+      <li>Swipe a row to edit or delete.</li>
+      <li>Tap <strong>Edit</strong>, then drag the handles to reorder categories, or activities inside a category. The new order is saved in the database.</li>
       <li>Archive an activity you no longer use. It disappears from Records, but its history is kept.</li>
     </ol>
     <p class="note">
       Deleting an activity or category also deletes its recorded time. Archive instead if you may
       want the history later — and export a backup before any major cleanup.
+    </p>
+
+    <h2>Live Activities</h2>
+    <p>
+      Starting a timer also starts a Live Activity. On the Lock Screen it shows as a card with the
+      activity icon, its name, a summary of the other running timers and the elapsed time. In the
+      Dynamic Island it shows as a pill with the activity icon and the live elapsed time, plus a
+      “+N” badge when other timers are running alongside.
+    </p>
+    <p>
+      Expanding the island (long-press; iOS decides when the expanded view appears, apps cannot
+      disable it) shows four corners of detail: the activity name on the left, the elapsed time on
+      the right, when the timer started in the lower-left corner and how much of today is tracked in
+      the lower-right corner.
+    </p>
+    <p>
+      The island shows hours and minutes only — the seconds are hidden so the pill fits within the
+      width the system allows. Timers over 24 hours keep counting total hours (26 hours reads as
+      “26:15”), so the island never has to switch formats. Tap the island or the card to open the
+      app. The activity ends when you stop the last running timer.
+    </p>
+    <p>
+      With several timers running, the Live Activity headlines the one that started first and
+      summarizes the others on the Lock Screen card (for example “Also Nap · +1”). The island can
+      only show one headline timer; open the app to see every running timer side by side.
     </p>
 
     <h2>Statistics</h2>
@@ -136,7 +162,7 @@
     <ol>
       <li>Open <strong>Settings → Backup → Import Database</strong>.</li>
       <li>Pick a previously exported <code>.sqlite</code> file.</li>
-      <li>Confirm the replacement. The file is checked first, then copied into place.</li>
+      <li>Confirm in the prompt that appears in the centre of the screen. The file is checked first, then copied into place.</li>
     </ol>
     <p class="note">
       Import replaces all current categories, activities and records. A safety copy of the previous
@@ -146,7 +172,7 @@
     <h2>About screen</h2>
     <p>
       <strong>Settings → About</strong> shows the number of records, categories and activities,
-      the app version, links to this policy and support page, and the contact address.
+      the app version, and links to the privacy policy and this support page.
     </p>
 
     <h2>FAQ</h2>
@@ -178,6 +204,14 @@
       <details>
         <summary>Does the layout adapt to iPad and foldables?</summary>
         <p>Yes. The interface uses size classes and system bars, so it adapts to iPad multitasking, landscape, and iPhone Duo poses, including the side-mounted controls.</p>
+      </details>
+      <details>
+        <summary>Why does the Dynamic Island show only hours and minutes?</summary>
+        <p>The island has a limited width, so the seconds are hidden to keep the pill short. The Lock Screen card and the app still show the exact time to the second. Durations over 24 hours keep counting in total hours — 26 hours reads as “26:15”, never “1d 2h”.</p>
+      </details>
+      <details>
+        <summary>Why does the island open into a large card when I press it?</summary>
+        <p>That expanded view is drawn by iOS, not by the app, and Apple gives apps no way to turn it off. It appears on a long press or when the system decides to show an update. Swipe up anywhere on the screen to collapse it again.</p>
       </details>
     </div>
 
