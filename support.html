@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Support — Spendly Time Track</title>
-  <meta name="description" content="Help for Spendly Time Track: starting timers, the Live Activity and Dynamic Island, reordering categories and activities, statistics, and database backup and restore.">
+  <meta name="description" content="Help for Spendly Time Track: starting timers, Home Screen widgets, the Live Activity and Dynamic Island, reordering categories and activities, statistics, and database backup and restore.">
   <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
@@ -45,7 +45,7 @@
         Spendly Time Track turns your 24 hours into a pie chart. Tap an activity to start
         tracking, tap it again to stop — and run as many timers at once as you need.
       </p>
-      <p class="meta">Version 1.0 · Requires iOS 27 or later · iPhone and iPad</p>
+      <p class="meta">Version 1.0.2 · Requires iOS 27 or later · iPhone and iPad</p>
     </div>
 
     <div class="card">
@@ -55,6 +55,7 @@
         <li>Tap a tile to start its timer. The tile lifts into Liquid Glass and shows <strong>LIVE</strong>.</li>
         <li>Tap the same tile again to stop. The session is saved to the database immediately.</li>
         <li>Tap <strong>Stats</strong> to see where the hours went — Day, Week, Month or Year.</li>
+        <li>Optional: add the <strong>Timer</strong> or <strong>Category Timers</strong> widget to your Home Screen to start and stop timers without opening the app.</li>
       </ol>
       <p class="note">
         Timers keep running while the app is in the background or closed, because each record stores
@@ -82,6 +83,73 @@
       <li><strong>Category totals</strong> — the sum of its activities for today.</li>
     </ul>
 
+    <h2>Home Screen widgets</h2>
+    <p>
+      Two widgets start and stop timers without opening the app. Both call the same code the app
+      uses, so the timer, the Live Activity and any focus reminder stay in sync. A widget button
+      never opens the app; tap anywhere else on the widget to jump to Records.
+    </p>
+    <table>
+      <thead>
+        <tr><th>Widget</th><th>Sizes</th><th>What it shows</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Timer</strong></td>
+          <td>Small, medium, large</td>
+          <td>One activity with its icon, a caption (“since 10:15” or “1h 20m today”) and a
+          start/stop capsule. The caption is a fixed label, not a counter, so the widget is not
+          redrawn every second.</td>
+        </tr>
+        <tr>
+          <td><strong>Category Timers</strong></td>
+          <td>Medium, large</td>
+          <td>The activities of one category, each with its own round start/stop button. Medium fits
+          three rows and large six; when a category has more activities, the running ones stay
+          visible first.</td>
+        </tr>
+      </tbody>
+    </table>
+    <h3>Add and configure a widget</h3>
+    <ol>
+      <li>Touch and hold an empty area of the Home Screen, then tap <strong>Edit</strong> (or <strong>+</strong>).</li>
+      <li>Search for <strong>Spendly Time</strong>, choose a size and add the widget.</li>
+      <li>Touch and hold the placed widget and choose <strong>Edit Widget</strong>. The Timer widget asks
+      for one activity; Category Timers asks for one category. Each widget has exactly one picker,
+      so it can never show two conflicting choices.</li>
+    </ol>
+    <p class="note">
+      The app and the widget share an App Group container, and the widget reads a small read-only
+      snapshot the app writes after every change. Opening the app once after installing or updating
+      is enough to create it. Before that the widget says <strong>Not synced yet</strong> — that is
+      not an error, and it fills in as soon as the app has been opened. If a widget ever looks
+      stale, open the app once; a change made in the app or through a widget button updates it
+      immediately.
+    </p>
+
+    <h2>Focus reminders</h2>
+    <p>
+      Any activity can carry a focus block — the length of one working stint, for example 45 minutes.
+      When a running timer reaches it, the app posts one local notification (“Deep Work · 45 min
+      done”) so you can take a break or switch to the next activity.
+    </p>
+    <ol>
+      <li>Open <strong>Settings → Categories &amp; Activities</strong> and edit an activity (or create one).</li>
+      <li>Turn on <strong>Focus reminder</strong> and pick the block length: 15, 20, 25, 30, 45, 60 or 90 minutes.</li>
+      <li>Save. The next time you start that activity the reminder is scheduled automatically.</li>
+    </ol>
+    <p>
+      While the block is running, its <strong>Now tracking</strong> chip, its tile and its list row
+      show a slim progress bar next to the minutes left, so you can see the block filling up without
+      opening the notification.
+    </p>
+    <p class="note">
+      The timer keeps running after the reminder — the app never stops an activity for you. Each
+      running timer gets exactly one reminder for its block, and stopping the timer cancels it.
+      If iOS notifications are off, the app says so in the editor; enable them in
+      iOS Settings → Notifications → Spendly Time.
+    </p>
+
     <h2>Categories and activities</h2>
     <p>
       A category groups related activities. For example <em>Study</em> can contain
@@ -96,16 +164,20 @@
       <li>Archive an activity you no longer use. It disappears from Records, but its history is kept.</li>
     </ol>
     <p class="note">
-      Deleting an activity or category also deletes its recorded time. Archive instead if you may
-      want the history later — and export a backup before any major cleanup.
+      Deleting an activity or category also deletes its recorded time. Every confirmation in the app
+      — deleting an activity or category, stopping all timers, replacing the database — appears as a
+      prompt in the centre of the screen.
+      Archive instead if you may want the history later — and export a backup before any major
+      cleanup.
     </p>
 
     <h2>Live Activities</h2>
     <p>
       Starting a timer also starts a Live Activity. On the Lock Screen it shows as a card with the
-      activity icon, its name, a summary of the other running timers and the elapsed time. In the
-      Dynamic Island it shows as a pill with the activity icon and the live elapsed time, plus a
-      “+N” badge when other timers are running alongside.
+      activity icon, its name and a fixed summary — “Since 10:15 AM · 18h 20m today”, or, when
+      other timers run, “Also tracking Nap · 18h 20m today”. In the Dynamic Island it shows as a
+      pill with the activity icon and the timer’s start time, plus a “+N” badge when other timers
+      are running alongside.
     </p>
     <p>
       Expanding the island (long-press; iOS decides when the expanded view appears, apps cannot
@@ -114,15 +186,16 @@
       the lower-right corner.
     </p>
     <p>
-      The island shows hours and minutes only — the seconds are hidden so the pill fits within the
-      width the system allows. Timers over 24 hours keep counting total hours (26 hours reads as
-      “26:15”), so the island never has to switch formats. Tap the island or the card to open the
-      app. The activity ends when you stop the last running timer.
+      The pill and the Lock Screen card deliberately use fixed labels: a counter that ticks every
+      second would make iOS redraw both surfaces for the whole session. The live clock lives in the
+      expanded island and counts total hours past a day (26 hours reads as “26:15:07”, never
+      “1d 2h”). Tap the island or the card to open the app. The activity ends when you stop the last
+      running timer.
     </p>
     <p>
-      With several timers running, the Live Activity headlines the one that started first and
-      summarizes the others on the Lock Screen card (for example “Also Nap · +1”). The island can
-      only show one headline timer; open the app to see every running timer side by side.
+      With several timers running, the Live Activity headlines the one that started first: the card
+      says “Also tracking Nap · 18h 20m today” and the pill’s trailing label adds a “+N” badge. The
+      island can only show one headline timer; open the app to see every running timer side by side.
     </p>
 
     <h2>Statistics</h2>
@@ -179,7 +252,7 @@
     <div class="faq">
       <details>
         <summary>Does the app sync between devices?</summary>
-        <p>Not in version 1.0. Data is local to each device. Export the database on one device and import it on another to move your history.</p>
+        <p>Not in version 1.0.2. Data is local to each device. Export the database on one device and import it on another to move your history.</p>
       </details>
       <details>
         <summary>Do I need an internet connection?</summary>
@@ -195,7 +268,7 @@
       </details>
       <details>
         <summary>Will my data survive an app update?</summary>
-        <p>Yes. Updating keeps the app’s data container. Deleting the app removes it, so export a backup first if you plan to reinstall.</p>
+        <p>Yes. Updating keeps the app’s data container. Version 1.0.2 moves an existing database into the shared App Group container on first launch; the originals are removed only after every file has been copied, so an interrupted move leaves your data where it was. Deleting the app removes it, so export a backup first if you plan to reinstall.</p>
       </details>
       <details>
         <summary>The numbers look different after midnight.</summary>
@@ -206,8 +279,20 @@
         <p>Yes. The interface uses size classes and system bars, so it adapts to iPad multitasking, landscape, and iPhone Duo poses, including the side-mounted controls.</p>
       </details>
       <details>
-        <summary>Why does the Dynamic Island show only hours and minutes?</summary>
-        <p>The island has a limited width, so the seconds are hidden to keep the pill short. The Lock Screen card and the app still show the exact time to the second. Durations over 24 hours keep counting in total hours — 26 hours reads as “26:15”, never “1d 2h”.</p>
+        <summary>Why don’t the island pill and the Lock Screen card count seconds?</summary>
+        <p>They show fixed labels — the timer’s start time on the pill, “Since 10:15 AM · 18h 20m today” on the card — because a counter that ticks every second would make iOS redraw both surfaces for the whole session. The expanded island is the one place with a live clock, since it only exists while you hold it open; durations over 24 hours keep counting total hours (26:15:07, never “1d 2h”). The app’s Now tracking strip still shows each running timer to the second.</p>
+      </details>
+      <details>
+        <summary>The widget says “Not synced yet”.</summary>
+        <p>Open Spendly Time once. The widget reads a snapshot the app writes on every change, and the first launch after installing or updating also moves an existing database into the shared container. Until that has happened the widget has nothing to draw.</p>
+      </details>
+      <details>
+        <summary>Why can’t the Category Timers widget show just one activity?</summary>
+        <p>Because iOS cannot hide a widget parameter conditionally, a single widget with both an activity and a category picker could show contradictory choices. The widgets are split instead: Timer for one activity, Category Timers for a whole category.</p>
+      </details>
+      <details>
+        <summary>Does tapping a widget button open the app?</summary>
+        <p>No. The start/stop button runs the same action in the background, so your Home Screen stays put. Tap the rest of the widget to open Records.</p>
       </details>
       <details>
         <summary>Why does the island open into a large card when I press it?</summary>

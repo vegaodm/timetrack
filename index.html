@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Privacy Policy — Spendly Time Track</title>
-  <meta name="description" content="Spendly Time Track privacy policy: all time records are stored locally on your device. No account, no analytics, no advertising.">
+  <meta name="description" content="Spendly Time Track privacy policy: all time records stay on your device and are shared only with the app’s own Home Screen widgets. No account, no analytics, no advertising.">
   <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
@@ -44,9 +44,10 @@
       <p class="lede">
         Spendly Time Track is a local-first time tracker. There is no account to create,
         no analytics, no advertising, and no third-party SDKs. Your categories, activities
-        and time records are stored in a SQLite database inside the app’s private container.
+        and time records are stored in a SQLite database in an App Group container on your
+        device that only the app and its own Home Screen widget extension can read.
       </p>
-      <p class="meta">Effective October 22, 2026 · Applies to Spendly Time Track for iPhone and iPad</p>
+      <p class="meta">Effective October 22, 2026 · Updated for version 1.0.2 · iPhone and iPad</p>
     </div>
 
     <div class="card">
@@ -55,13 +56,16 @@
         <li><strong>No account.</strong> The app works fully offline and never asks for an email address.</li>
         <li><strong>No tracking.</strong> No analytics, advertising identifiers, crash-reporting SDKs or cross-app tracking.</li>
         <li><strong>No collection.</strong> The developer does not receive or store any of your data on a server.</li>
+        <li><strong>No sharing.</strong> The Home Screen widgets read the app’s own on-device data through an App Group container. Nothing is sent off the device, and no other app can read it.</li>
         <li><strong>You control backups.</strong> Database files leave the device only when you export them yourself.</li>
       </ul>
     </div>
 
     <h2>Information the app stores</h2>
     <p>
-      Everything below is written to a local SQLite database in the app’s sandbox on your device:
+      Everything below is written to a local SQLite database in an App Group container that the
+      app shares with its Home Screen widget extension. The container lives on your device and no
+      other app can read it:
     </p>
     <ul>
       <li>The categories you create, including their name, color, icon and the order you arrange them in.</li>
@@ -69,6 +73,12 @@
       <li>Time records: an activity identifier plus a start time and, when you stop the timer, an end time.</li>
       <li>App preferences, such as whether Records uses the grid or list layout.</li>
     </ul>
+    <p>
+      Beside the database the app writes a small, read-only snapshot: activity and category names,
+      their colours and icons, whether a timer is running, when it started and how much time it has
+      tracked today. It contains nothing that is not already in the database; it exists so a Home
+      Screen widget can draw without opening the database.
+    </p>
     <p>
       The app does not request or access your contacts, photos, camera, microphone, location,
       health data, motion data, calendars or advertising identifier. It does not use cookies or
@@ -82,6 +92,10 @@
       share sheet — for example “Save to Files”, AirDrop or Mail. In that case the file is handled
       by the destination you selected, under that service’s own privacy terms.
     </p>
+    <p>
+      The App Group container is part of the app’s data on your device. iOS lets the app and its
+      own widget extension read it; it is not shared with any other app, and no server receives it.
+    </p>
 
     <h2>Backups and restore</h2>
     <p>
@@ -92,30 +106,55 @@
       not encrypted by the app; store them somewhere you trust.
     </p>
 
+    <h2>Home Screen widgets</h2>
+    <p>
+      Spendly Time Track offers two widgets: <em>Timer</em>, bound to one activity, and
+      <em>Category Timers</em>, bound to one category and showing its activities. Both are drawn
+      from the read-only snapshot described above. A start or stop button performs the same action
+      as tapping a tile in the app — it writes the timer to the database and updates the Live
+      Activity and any focus reminder — so the widget and the app cannot disagree. The widget
+      extension itself never writes, and nothing about a tap leaves your device.
+    </p>
+    <p>
+      The widgets need no account and no network connection. Until the app has been opened once and
+      has written the snapshot, a widget shows “Not synced yet” rather than stale content.
+    </p>
+
     <h2>Live Activities</h2>
     <p>
       While a timer is running, the app shows a Live Activity on your Lock Screen and in the
-      Dynamic Island: the activity icon, its name and the elapsed time. Expanding the island adds
-      the start time and the time tracked today. All of it — including the elapsed time, which the
-      system ticks forward on its own — is rendered on your device from the local database. None of
-      it is sent to the developer, to any server or to any third party, and the app performs no
-      network requests to keep it up to date. Stopping the last timer ends the activity.
+      Dynamic Island: the activity icon, its name, when it started and how much of today is
+      tracked. The Lock Screen card and the compact island use fixed labels rather than a running
+      counter; expanding the island adds the live elapsed time, which the system ticks forward on
+      its own. All of it is rendered on your device from the local database. None of it is sent to
+      the developer, to any server or to any third party, and the app performs no network requests
+      to keep it up to date. Stopping the last timer ends the activity.
+    </p>
+
+    <h2>Notifications</h2>
+    <p>
+      If you give an activity a focus block, the app schedules a single local notification for the
+      moment that block is complete. Notifications are created and delivered by iOS on your device:
+      the app has no server, sends no push notifications and uploads nothing. No notification
+      permission is requested until you turn a focus reminder on, and you can turn it off at any time
+      in iOS Settings → Notifications.
     </p>
 
     <h2>Data retention and deletion</h2>
     <ul>
       <li>Records stay on your device until you delete them.</li>
       <li>Deleting an activity or category deletes its time records as well.</li>
-      <li>Deleting the app removes the database and the in-app backups from your device.</li>
+      <li>Deleting the app removes the database, the read-only widget snapshot and the in-app backups from your device; iOS also removes the shared App Group container once the app that uses it is gone.</li>
       <li>Backup files you exported to Files, iCloud Drive or another location are outside the app and must be deleted there.</li>
     </ul>
     <p>Because the developer never receives your data, there is no server-side copy to request or erase.</p>
 
     <h2>Security</h2>
     <p>
-      The database is protected by the iOS app sandbox and by your device passcode and encryption.
-      Time records are not sent over the network. Exported backup files are ordinary SQLite files,
-      so only share them with people and services you trust.
+      The database and the widget snapshot are protected by the iOS sandbox and App Group
+      isolation, and by your device passcode and encryption. Only Spendly Time Track and its widget
+      extension can read them. Time records are not sent over the network. Exported backup files are
+      ordinary SQLite files, so only share them with people and services you trust.
     </p>
 
     <h2>Children</h2>
