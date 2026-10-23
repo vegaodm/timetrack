@@ -91,17 +91,21 @@
       offers a “Show details” action.
     </p>
 
-    <h2>Home Screen widgets</h2>
+    <h2>Home Screen and Lock Screen widgets</h2>
     <p>
-      Two widgets start and stop timers without opening the app. Both call the same code the app
-      uses, so the timer, the Live Activity and any focus reminder stay in sync. A widget button
-      never opens the app; tap anywhere else on the widget to jump to Records.
+      Two widgets start and stop timers without opening the app. Both run the same timer code the app
+      uses, so the widget and the record never disagree. A timer <strong>started from a widget</strong>
+      deliberately skips the Live Activity, which is what lets the same widget stop it instantly;
+      start a timer <strong>in the app</strong> when you want the Dynamic Island. A widget button never
+      opens the app; tap anywhere else on the widget to jump to Records. The Timer widget is also
+      available on the <strong>Lock Screen</strong> — as a circular glyph next to the clock or a
+      rectangular row — so a timer can start or finish without unlocking the phone.
     </p>
     <p class="note">
       A tap writes the record and asks WidgetKit to redraw before it updates the Live Activity, so the
-      button flips as soon as the change is stored. If iOS has to wake the app first, the change can
-      still take a moment — the button dims while it is held down, and the new state appears as soon
-      as the write lands.
+      button flips in well under a second — the app keeps itself alive for a moment after the write so
+      the widget can redraw before iOS suspends it. The button dims while it is held down, and the new
+      state appears as soon as the write lands.
     </p>
     <table>
       <thead>
@@ -110,10 +114,11 @@
       <tbody>
         <tr>
           <td><strong>Timer</strong></td>
-          <td>Small, medium, large</td>
+          <td>Small, medium, large, and the Lock Screen (circular, rectangular)</td>
           <td>One activity with its icon, a caption (“since 10:15” or “1h 20m today”) and a
           start/stop capsule. The caption is a fixed label, not a counter, so the widget is not
-          redrawn every second.</td>
+          redrawn every second. On the Lock Screen the whole circle or rectangle is the button,
+          and the accent mark shows whether the timer is running.</td>
         </tr>
         <tr>
           <td><strong>Category Timers</strong></td>
@@ -132,6 +137,13 @@
       for one activity; Category Timers asks for one category. Each widget has exactly one picker,
       so it can never show two conflicting choices.</li>
     </ol>
+    <p class="note">
+      For the Lock Screen, touch and hold the Lock Screen, tap <strong>Customize</strong>, then add the
+      Spendly Time <strong>Timer</strong> widget in a circular or rectangular slot and choose its activity.
+      A Lock Screen tap uses the same widget path: it starts or stops immediately, and—like every
+      widget-started timer—it does not create a Live Activity. Start a timer in the app for the
+      Dynamic Island.
+    </p>
     <p class="note">
       The app and the widget share an App Group container, and the widget reads a small read-only
       snapshot the app writes after every change. Opening the app once after installing or updating
