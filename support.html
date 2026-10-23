@@ -78,16 +78,30 @@
     </p>
     <h3>What the cards show</h3>
     <ul>
-      <li><strong>Today ring</strong> — the share of the 24-hour day used by each category, plus the untracked remainder.</li>
-      <li><strong>Tile time</strong> — how much time you have tracked for that activity today.</li>
+      <li><strong>Today ring</strong> — one revolution is always exactly 24 hours, so an arc is as long as the clock time it covers. A record that started yesterday (a night’s sleep) shows only its part after midnight, and a moment with two timers is drawn as two lanes over the same angle instead of adding time.</li>
+      <li><strong>Tile time</strong> — how much time you have tracked for that activity today, running timers included. Tiles report records, so they can add up to more than the ring.</li>
       <li><strong>Category totals</strong> — the sum of its activities for today.</li>
     </ul>
+    <h3>Ring details</h3>
+    <p>
+      Double-tap a ring — the Today ring or the Distribution ring in <strong>Stats</strong> — for a
+      full-screen view: the same circle large enough to read a short block, every category openable
+      to the activities behind it, and (on a day) the stretches where two timers ran at once listed
+      by name. Both rings carry a small expand glyph in the middle as a reminder, and VoiceOver
+      offers a “Show details” action.
+    </p>
 
     <h2>Home Screen widgets</h2>
     <p>
       Two widgets start and stop timers without opening the app. Both call the same code the app
       uses, so the timer, the Live Activity and any focus reminder stay in sync. A widget button
       never opens the app; tap anywhere else on the widget to jump to Records.
+    </p>
+    <p class="note">
+      A tap writes the record and asks WidgetKit to redraw before it updates the Live Activity, so the
+      button flips as soon as the change is stored. If iOS has to wake the app first, the change can
+      still take a moment — the button dims while it is held down, and the new state appears as soon
+      as the write lands.
     </p>
     <table>
       <thead>
@@ -204,7 +218,7 @@
         <tr><th>Range</th><th>What it shows</th></tr>
       </thead>
       <tbody>
-        <tr><td>Day</td><td>The full 24 hours: tracked categories plus the untracked remainder.</td></tr>
+        <tr><td>Day</td><td>The full 24 hours: tracked categories plus the untracked remainder, and one bar per hour of the clock — an overnight record fills the hours it occupied, and overlapping timers stack in their own colours.</td></tr>
         <tr><td>Week</td><td>Seven days, with daily bars and a category breakdown.</td></tr>
         <tr><td>Month</td><td>Every day in the month, plus per-category totals.</td></tr>
         <tr><td>Year</td><td>Twelve monthly buckets and the year’s distribution.</td></tr>
@@ -216,9 +230,10 @@
     </p>
     <h3>Why can tracked time exceed 24 hours?</h3>
     <p>
-      Parallel timers overlap. The Day ring always represents the 24-hour day, so overlapping
-      sessions are normalised in the chart while the totals report the real sum of tracked time.
-      The app shows an explanatory note whenever this happens.
+      Parallel timers overlap — running “Commute” and “Podcast” at the same time counts both — and an
+      activity’s number sums its records, including a night that started yesterday. The ring is the
+      one place that cannot pass 24 hours: it draws the day as it happened, shows a parallel stretch
+      as two lanes over the same angle, and leaves out yesterday’s part of an overnight record.
     </p>
 
     <h2>Backup and restore</h2>
@@ -272,7 +287,11 @@
       </details>
       <details>
         <summary>The numbers look different after midnight.</summary>
-        <p>Records and the Day range describe the current calendar day. Sessions that cross midnight are split at midnight for day-level statistics.</p>
+        <p>A record belongs to the day it ended on. A sleep from 23:12 to 06:30 is one record and one number: 7h 18m on the day you woke up, not 48 minutes on one day and 6h 30m on the next. The ring is the other way round — it is the clock, so it shows only that night’s 00:00–06:30. The Today card says how much of the day’s records happened before midnight.</p>
+      </details>
+      <details>
+        <summary>Why is the ring shorter than the sum of my activities?</summary>
+        <p>Because the ring is the clock. A night that started at 23:12 contributes only its part after midnight, and a minute with two timers is one angle split into two lanes rather than two arcs. The pills, tiles and breakdown report records, so they can be larger. Open the ring’s full-screen view to see which activities a block is made of.</p>
       </details>
       <details>
         <summary>Does the layout adapt to iPad and foldables?</summary>
