@@ -102,10 +102,11 @@
       rectangular row — so a timer can start or finish without unlocking the phone.
     </p>
     <p class="note">
-      A tap writes the record and asks WidgetKit to redraw before it updates the Live Activity, so the
-      button flips in well under a second — the app keeps itself alive for a moment after the write so
-      the widget can redraw before iOS suspends it. The button dims while it is held down, and the new
-      state appears as soon as the write lands.
+      A tap writes the record and asks WidgetKit to redraw. A timer started from a widget flips
+      immediately, because the widget extension performs the whole change itself. Stopping a timer
+      that was <strong>started in the app</strong> can take a moment: its Live Activity can only be
+      ended by the app process, and iOS schedules that widget redraw a little later. The button dims
+      while it is held down, and the new state appears as soon as the write lands.
     </p>
     <table>
       <thead>
@@ -117,8 +118,9 @@
           <td>Small, medium, large, and the Lock Screen (circular, rectangular)</td>
           <td>One activity with its icon, a caption (“since 10:15” or “1h 20m today”) and a
           start/stop capsule. The caption is a fixed label, not a counter, so the widget is not
-          redrawn every second. On the Lock Screen the whole circle or rectangle is the button,
-          and the accent mark shows whether the timer is running.</td>
+          redrawn every second. On the Lock Screen the whole circle or rectangle is the button:
+          the circle wears the app's own day ring, with a clock face while the timer runs and a
+          play mark when it is idle.</td>
         </tr>
         <tr>
           <td><strong>Category Timers</strong></td>
