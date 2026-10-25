@@ -47,7 +47,7 @@
         and time records are stored in a SQLite database in an App Group container on your
         device that only the app and its own Home Screen widget extension can read.
       </p>
-      <p class="meta">Effective October 22, 2026 · Updated for version 1.0.2 · iPhone and iPad</p>
+      <p class="meta">Effective October 22, 2026 · Updated for version 1.1.0 · iPhone and iPad</p>
     </div>
 
     <div class="card">
@@ -82,7 +82,10 @@
     <p>
       The app does not request or access your contacts, photos, camera, microphone, location,
       health data, motion data, calendars or advertising identifier. It does not use cookies or
-      web beacons, and it does not perform any network requests of its own.
+      web beacons. The app performs no network requests of its own: its only interaction with the
+      network is the optional one-time purchase, which is handled by Apple's StoreKit and the App
+      Store on the device — the app receives a signed entitlement and nothing else is sent to the
+      developer.
     </p>
 
     <h2>What leaves your device</h2>
@@ -106,14 +109,16 @@
       not encrypted by the app; store them somewhere you trust.
     </p>
 
-    <h2>Home Screen widgets</h2>
+    <h2>Home Screen and Lock Screen widgets</h2>
     <p>
       Spendly Time Track offers two widgets: <em>Timer</em>, bound to one activity, and
       <em>Category Timers</em>, bound to one category and showing its activities. Both are drawn
       from the read-only snapshot described above. A start or stop button performs the same action
       as tapping a tile in the app — it writes the timer to the database and updates the Live
-      Activity and any focus reminder — so the widget and the app cannot disagree. The widget
-      extension itself never writes, and nothing about a tap leaves your device.
+      Activity and any focus reminder — so the widget and the app cannot disagree. The <em>Timer</em>
+      widget also sits on the Lock Screen, as a circular glyph or a rectangular row; there the whole
+      control is the button, and the tap is performed by the app so the Live Activity can follow it.
+      Nothing about a tap leaves your device.
     </p>
     <p>
       The widgets need no account and no network connection. Until the app has been opened once and
@@ -128,7 +133,8 @@
       counter; expanding the island adds the live elapsed time, which the system ticks forward on
       its own. All of it is rendered on your device from the local database. None of it is sent to
       the developer, to any server or to any third party, and the app performs no network requests
-      to keep it up to date. Stopping the last timer ends the activity.
+      to keep it up to date. The app has no server at all; the optional one-time purchase is
+      processed by the App Store. Stopping the last timer ends the activity.
     </p>
 
     <h2>Notifications</h2>

@@ -45,7 +45,7 @@
         Spendly Time Track turns your 24 hours into a pie chart. Tap an activity to start
         tracking, tap it again to stop — and run as many timers at once as you need.
       </p>
-      <p class="meta">Version 1.0.2 · Requires iOS 27 or later · iPhone and iPad</p>
+      <p class="meta">Version 1.1.0 · Requires iOS 27 or later · iPhone and iPad</p>
     </div>
 
     <div class="card">
@@ -94,19 +94,21 @@
     <h2>Home Screen and Lock Screen widgets</h2>
     <p>
       Two widgets start and stop timers without opening the app. Both run the same timer code the app
-      uses, so the widget and the record never disagree. A timer <strong>started from a widget</strong>
-      deliberately skips the Live Activity, which is what lets the same widget stop it instantly;
-      start a timer <strong>in the app</strong> when you want the Dynamic Island. A widget button never
-      opens the app; tap anywhere else on the widget to jump to Records. The Timer widget is also
-      available on the <strong>Lock Screen</strong> — as a circular glyph next to the clock or a
-      rectangular row — so a timer can start or finish without unlocking the phone.
+      uses, so the widget and the record never disagree. A timer <strong>started from a Home Screen
+      widget</strong> deliberately skips the Live Activity, which is what lets the same widget stop it
+      instantly; start a timer <strong>in the app or on the Lock Screen</strong> when you want the
+      Dynamic Island. A widget button never opens the app; tap anywhere else on the widget to jump to
+      Records. The Timer widget is also available on the <strong>Lock Screen</strong> — as a circular
+      glyph next to the clock or a rectangular row — so a timer can start or finish without unlocking
+      the phone.
     </p>
     <p class="note">
-      A tap writes the record and asks WidgetKit to redraw. A timer started from a widget flips
-      immediately, because the widget extension performs the whole change itself. Stopping a timer
-      that was <strong>started in the app</strong> can take a moment: its Live Activity can only be
-      ended by the app process, and iOS schedules that widget redraw a little later. The button dims
-      while it is held down, and the new state appears as soon as the write lands.
+      A tap writes the record and asks WidgetKit to redraw. A timer started from a
+      <strong>Home Screen</strong> widget flips immediately, because the widget extension performs the
+      whole change itself. A <strong>Lock Screen</strong> tap and stopping a timer that was started in
+      the app go through the app instead — that is the only place a Live Activity can be created or
+      ended, and iOS schedules those widget redraws a little later. The button dims while it is held
+      down, and the new state appears as soon as the write lands.
     </p>
     <table>
       <thead>
@@ -142,17 +144,37 @@
     <p class="note">
       For the Lock Screen, touch and hold the Lock Screen, tap <strong>Customize</strong>, then add the
       Spendly Time <strong>Timer</strong> widget in a circular or rectangular slot and choose its activity.
-      A Lock Screen tap uses the same widget path: it starts or stops immediately, and—like every
-      widget-started timer—it does not create a Live Activity. Start a timer in the app for the
-      Dynamic Island.
+      A Lock Screen tap starts or stops the timer in the app's process, so it also creates the Live
+      Activity — the Lock Screen card and the Dynamic Island follow the tap.
     </p>
     <p class="note">
       The app and the widget share an App Group container, and the widget reads a small read-only
       snapshot the app writes after every change. Opening the app once after installing or updating
       is enough to create it. Before that the widget says <strong>Not synced yet</strong> — that is
       not an error, and it fills in as soon as the app has been opened. If a widget ever looks
-      stale, open the app once; a change made in the app or through a widget button updates it
-      immediately.
+      stale, open the app once: a change made in the app or through a widget button updates it
+      immediately, and opening the app re-publishes anything a widget tap could not hand over to the
+      other widget.
+    </p>
+
+    <h2>Lifetime Membership</h2>
+    <p>
+      Every feature is free for <strong>seven days</strong> from the first time the app opens. After
+      that, one purchase — <strong>Lifetime Membership</strong> — unlocks the app for good. It is a
+      single payment, not a subscription: there is nothing to renew and nothing to cancel, and the
+      price shown in the app is the App Store price for your country.
+    </p>
+    <p>
+      When the week ends the app becomes <strong>read-only</strong>. Your records stay visible, the
+      statistics keep working, and a backup can still be exported, because your data is yours.
+      Starting a timer, editing categories and activities, correcting a record and importing a backup
+      need the purchase — and a timer that is already running can always be stopped.
+    </p>
+    <p class="note">
+      The trial starts on the first launch and is remembered in the Keychain, so deleting the app
+      does not restart it. The purchase is tied to your Apple Account: on a new device, sign in and
+      tap <strong>Settings → Lifetime Membership → Restore Purchase</strong>. The week itself is not
+      a StoreKit free trial — Apple only offers those for auto-renewable subscriptions.
     </p>
 
     <h2>Focus reminders</h2>
@@ -242,6 +264,19 @@
       Use the arrows to move to a previous or next period, and the refresh button to reload.
       Tap a category in <strong>Breakdown</strong> to expand its activities.
     </p>
+    <h3>Correcting a record</h3>
+    <p>
+      Tap an activity in <strong>Breakdown</strong> to see the records behind its number, then tap a
+      record to fix it: file it under the right activity, or change when it started and ended. The
+      statistics follow immediately — a reassigned record moves to its new category, and changing the
+      end date moves it to the day it now ends on, which is the day it counts on.
+    </p>
+    <p class="note">
+      Only finished records can be corrected. The timer that is running right now is owned by its
+      Live Activity and by the widget button that can stop it, so it is left alone until it stops.
+      Every correction keeps the values the record had before it, listed under “Earlier versions”
+      in the editor, so a mistaken fix can be read back.
+    </p>
     <h3>Why can tracked time exceed 24 hours?</h3>
     <p>
       Parallel timers overlap — running “Commute” and “Podcast” at the same time counts both — and an
@@ -278,6 +313,16 @@
     </p>
 
     <h2>FAQ</h2>
+    <p>
+      <strong>Why is the app read-only?</strong><br>
+      The seven free days have ended. Settings → Lifetime Membership unlocks the app; your records,
+      statistics and backups are untouched either way.
+    </p>
+    <p>
+      <strong>I bought it before. How do I unlock it again?</strong><br>
+      Settings → Lifetime Membership → Restore Purchase. The purchase belongs to the Apple Account
+      that made it, so sign in with that account first.
+    </p>
     <div class="faq">
       <details>
         <summary>Does the app sync between devices?</summary>
