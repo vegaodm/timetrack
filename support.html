@@ -183,6 +183,28 @@
       a StoreKit free trial — Apple only offers those for auto-renewable subscriptions.
     </p>
 
+    <h2>Refunds</h2>
+    <p>
+      Every payment is taken by the App Store, so Apple issues any refund — the app cannot charge,
+      cancel or refund anything itself. To request one for Lifetime Membership, open
+      <a href="https://reportaproblem.apple.com">reportaproblem.apple.com</a> and sign in with the
+      Apple Account that made the purchase. Apple decides the outcome, and the developer is not told
+      why a refund was requested.
+    </p>
+    <p>
+      When a refund is approved, the App Store revokes the purchase. The app reads the entitlement on
+      every launch and again whenever you tap <strong>Restore Purchase</strong>, so it returns to the
+      trial rules: while the seven free days are still running the app stays unlocked, and after them
+      it becomes read-only. Nothing is deleted — your categories, activities and records stay
+      readable, the statistics keep working and a backup can still be exported. Buying Lifetime
+      Membership again restores the unlock, including after a refund.
+    </p>
+    <p class="note">
+      A refund can take a few days to reach the device. If Apple has confirmed it and the app still
+      looks unlocked, open <strong>Settings → Lifetime Membership → Restore Purchase</strong>; that
+      re-reads the App Store's own state instead of the cached one.
+    </p>
+
     <h2>Focus reminders</h2>
     <p>
       Any activity can carry a focus block — the length of one working stint, for example 45 minutes.
@@ -332,7 +354,7 @@
     <div class="faq">
       <details>
         <summary>Does the app sync between devices?</summary>
-        <p>Not in version 1.0.2. Data is local to each device. Export the database on one device and import it on another to move your history.</p>
+        <p>Not in version 1.1.1. Data is local to each device. Export the database on one device and import it on another to move your history.</p>
       </details>
       <details>
         <summary>Do I need an internet connection?</summary>
@@ -348,7 +370,7 @@
       </details>
       <details>
         <summary>Will my data survive an app update?</summary>
-        <p>Yes. Updating keeps the app’s data container. Version 1.0.2 moves an existing database into the shared App Group container on first launch; the originals are removed only after every file has been copied, so an interrupted move leaves your data where it was. Deleting the app removes it, so export a backup first if you plan to reinstall.</p>
+        <p>Yes. Updating keeps the app’s data container. The one-time move of an existing database into the shared App Group container runs only on the first launch after such an update, and the originals are removed only after every file has been copied, so an interrupted move leaves your data where it was. Deleting the app removes it, so export a backup first if you plan to reinstall.</p>
       </details>
       <details>
         <summary>The numbers look different after midnight.</summary>
